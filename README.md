@@ -1,1 +1,1 @@
-# study-devices-shop-app
+# study: Devices Shop App
