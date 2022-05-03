@@ -25,6 +25,8 @@ buildNumber.properties
 *.iws
 *.iml
 *.ipr
+#NEXT ROW is added by me
+.idea/workspace.xml
 
 ### Eclipse ###
 .apt_generated
