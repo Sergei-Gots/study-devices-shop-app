@@ -4,7 +4,7 @@ package com.sergeigots.study.devicesshop;
  * Hello world!
  *
  */
-public class App 
+public class ShopApp
 {
     public static void main( String[] args )
     {
