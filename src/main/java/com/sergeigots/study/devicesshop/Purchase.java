@@ -1,19 +1,19 @@
 package com.sergeigots.study.devicesshop;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
+import java.util.ArrayList;
 
 public class Purchase {
 
     protected LocalDateTime dateTime;
     protected int customerId;
-    Collection<SoldLot> soldLots;
+    ArrayList<Lot> lots;
 
-    public Purchase(LocalDateTime dateTime, Customer customer,
-                    Collection<SoldLot> soldLots){
-        this.customerId = customer.getId();
+    public Purchase(LocalDateTime dateTime, int customerId,
+                    ArrayList<Lot> lots){
+        this.customerId = customerId;
         this.dateTime = dateTime;
-        this.soldLots = soldLots;
+        this.lots = lots;
     }
 
 }

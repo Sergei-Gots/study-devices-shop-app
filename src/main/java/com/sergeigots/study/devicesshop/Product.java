@@ -4,17 +4,18 @@ import java.awt.Color;
 import java.time.LocalDate;
 
 public class Product {
-    protected static int nextShopProductArticle;
-    protected int article;
+    protected static int nextProductId;
+    protected int id;
     protected String manufacturer;
     protected String name;
+    protected String article;
     protected Color color;
     protected LocalDate manufactureDate;
     double currentPrice;
 
-    public Product(String manufacturer, String name, Color color,
+    public Product(String manufacturer, String name, String article, Color color,
                    LocalDate manufactureDate, double currentPrice){
-        this.article = nextShopProductArticle++;
+        this.id = nextProductId++;
         this.manufacturer = manufacturer;
         this.name = name;
         this.manufactureDate = manufactureDate;
@@ -22,7 +23,11 @@ public class Product {
 
     }
 
-    public int getArticle() {
+    public int getId() {
+        return id;
+    }
+
+    public String getArticle() {
         return article;
     }
 

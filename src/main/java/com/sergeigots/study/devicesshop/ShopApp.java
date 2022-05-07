@@ -1,58 +1,26 @@
 package com.sergeigots.study.devicesshop;
 
+import java.awt.*;
+import java.time.Month;
+import java.util.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
 /**
  * Hello world!
  *
  */
-public class ShopApp implements ShopAssistant {
-    public static void main( String[] args )
-    {
+public class ShopApp  {
 
+    static {
         System.out.println("Hello World!\n" +
                 "Welcome to our new Devices Shop!:)");
     }
-
-    public void createCustomer(){
-
-    }
-
-    public void updateCustomer(){
+    public static void main( String[] args )
+    {
+        Shop shop = new Shop();
 
     }
 
-    public void createProduct(){
-
-    }
-
-    public void updateProduct(){
-
-    }
-
-    public void createPurchase(){
-
-    }
-
-    public void showCustomerInfo(int customerId){
-
-    }
-
-    public void showProductInfo(int productId){
-
-    }
-
-    public void showPurchaseId(int purchaseId){
-
-    }
-
-    public void showCustomersList(){
-
-    }
-
-    public void showProductsList(){
-
-    }
-
-    public void showPurchasesList(){
-
-    }
 }

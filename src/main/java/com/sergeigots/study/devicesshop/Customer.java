@@ -1,6 +1,7 @@
 package com.sergeigots.study.devicesshop;
 
 import java.time.LocalDate;
+import java.time.Month;
 
 public class Customer {
     static protected int customerCount;
@@ -11,7 +12,8 @@ public class Customer {
     protected String name;
     protected String patronymic;
 
-    LocalDate dateOfBirth;
+    protected LocalDate dateOfBirth;
+    protected boolean isBirhdaySpecified;
 
     Customer(String surname, String name, String patronymic, LocalDate dateOfBirth){
         id = customerCount++;
@@ -19,6 +21,16 @@ public class Customer {
         this.name = name;
         this.patronymic = patronymic;
         this.dateOfBirth = dateOfBirth;
+        this.isBirhdaySpecified = true;
+    }
+
+    Customer(String surname, String name, String patronymic, int yearOfBirth){
+        id = customerCount++;
+        this.surname = surname;
+        this.name = name;
+        this.patronymic = patronymic;
+        this.dateOfBirth = LocalDate.of(yearOfBirth, Month.JANUARY, 1);
+        this.isBirhdaySpecified = false;
     }
 
     public static int getCustomerCount() {
@@ -43,6 +55,10 @@ public class Customer {
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
+    }
+
+    public boolean isBirhdaySpecified(){
+        return isBirhdaySpecified;
     }
 
 }
