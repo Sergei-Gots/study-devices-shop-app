@@ -3,7 +3,7 @@ package com.sergeigots.study.devicesshop;
 import java.time.LocalDate;
 import java.time.Month;
 
-public class Customer {
+public class Customer implements ShopDataEntity {
     static protected int customerCount;
 
     protected int id;
@@ -61,4 +61,11 @@ public class Customer {
         return isBirhdaySpecified;
     }
 
+    @Override
+    public void printInfo() {
+        System.out.println("Customer info:");
+        System.out.println("Full name: " + surname + ' ' + name + ' ' + patronymic );
+        System.out.println("Date of birth: " + dateOfBirth.toString());
+        System.out.println();
+    }
 }

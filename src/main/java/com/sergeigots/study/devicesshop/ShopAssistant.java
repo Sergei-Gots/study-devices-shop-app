@@ -1,11 +1,17 @@
 package com.sergeigots.study.devicesshop;
 
 
+import java.time.LocalDate;
+
 public interface ShopAssistant {
-    public void createCustomer();
+    /**
+     *
+     * @return the created Customer's instance  or null if there hasn't been a customer created.
+     */
+    public Customer createCustomer();
     public void updateCustomer();
     public Customer getCustomer(int id);
-    public void createProduct();
+    public Product createProduct();
     public void updateProduct();
     public Product getProduct(int id);
     public void createPurchase();
