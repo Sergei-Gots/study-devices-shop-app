@@ -14,7 +14,7 @@ public interface ShopAssistant {
     public Product createProduct();
     public void updateProduct();
     public Product getProduct(int id);
-    public void createPurchase();
+    public Purchase createPurchase();
     public void showCustomerInfo(int id);
     public void showProductInfo(int id);
     public void showPurchaseId(int id);

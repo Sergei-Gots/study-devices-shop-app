@@ -44,31 +44,31 @@ public class Shop implements ShopAssistant {
 
 
         products.add(new Product("Apple", "IPhone", "Pro 13",
-                Color.DARK_GRAY, "DARK_GRAY",
+                "DARK_GRAY",
                 LocalDate.of(2022,Month.MAY,7),
                 1159.00));
         products.add(new Product("Apple", "IPhone", "13",
-                Color.WHITE, "WHITE",
+                "WHITE",
                 LocalDate.of(2022,Month.MAY,7),
                 909.00));
         products.add(new Product("Apple", "IPhone", "mini",
-                Color.BLACK, "BLACK",
+                "BLACK",
                 LocalDate.of(2022,Month.MAY,7),
                 809.00));
         products.add(new Product("Apple", "IPhone", "SE",
-                Color.DARK_GRAY, "DARK_GRAY",
+                 "DARK_GRAY",
                 LocalDate.of(2022,Month.MAY,7),
                 529.00));
         products.add(new Product("Apple", "IPhone", "SE",
-                Color.WHITE, "WHITE",
+                 "WHITE",
                 LocalDate.of(2022,Month.MAY,7),
                 529.00));
         products.add(new Product("Apple", "IPhone", "SE",
-                Color.RED, "RED",
+                 "RED",
                 LocalDate.of(2022,Month.MAY,7),
                 529.00));
         products.add(new Product("Apple", "IPad", "Air",
-                Color.DARK_GRAY, "DARK_GRAY",
+                 "DARK_GRAY",
                 LocalDate.of(2022,Month.MAY,7),
                 698.50));
 
@@ -100,21 +100,20 @@ public class Shop implements ShopAssistant {
         LocalDate dateOfBirth;
         System.out.println("Create a new customer");
 
-        BufferedReader buffReader = new BufferedReader(new InputStreamReader(System.in));
         try {
             System.out.print("Input the name: ");
-            name = buffReader.readLine();
+            name = ShopApp.bufferedReader.readLine();
             System.out.print("Input the patronymic: ");
-            patronymic = buffReader.readLine();
+            patronymic = ShopApp.bufferedReader.readLine();
             System.out.print("Input the surname: ");
-            surname = buffReader.readLine();
+            surname = ShopApp.bufferedReader.readLine();
 
             try {
                 System.out.print("Input the birthdate ('YYYY-MM-DD'): ");
-                dateOfBirth = LocalDate.parse(buffReader.readLine());
+                dateOfBirth = LocalDate.parse(ShopApp.bufferedReader.readLine());
             }
             catch(Exception e) {
-                System.out.println("There is an exception caught during reading and parsing date of birth." +
+                System.out.println("There is an exception caught during reading and parsing date of birth. " +
                         "Next time be careful with an input, please\n");
                 return null;
             }
@@ -130,6 +129,51 @@ public class Shop implements ShopAssistant {
         return customer;
     }
 
+    public Purchase createPurchase(){
+        int customerId;
+        LocalDateTime saleDateTime = LocalDateTime.now();
+        ArrayList<Lot> lots = new ArrayList<>();
+
+        System.out.println("Create a new purchase");
+        System.out.println("Sale time = " + saleDateTime);
+
+        try {
+            boolean carryOn = true;
+            int productsCount = Product.getProductsCount();
+            System.out.print("Input a customer ID (from 0 to "
+                    + (Customer.getCustomerCount()-1) + "): ");
+            customerId = Integer.parseInt(ShopApp.bufferedReader.readLine());
+            System.out.println("Input sold lots. ");
+            while(carryOn) {
+                int productId=-1, itemsCount;
+                Product product;
+                System.out.print("Input a product ID (from 0 to "
+                        + productsCount + ") or '-1' to close the list: ");
+                productId = Integer.parseInt(ShopApp.bufferedReader.readLine());
+                if(productId==-1){
+                    carryOn = false;
+                    continue;
+                }
+
+                System.out.print("\tSelected product: ");
+                product = products.get(productId);
+                product.printInfoShort();
+                System.out.print("\tInput an items count: ");
+                itemsCount = Integer.parseInt(ShopApp.bufferedReader.readLine());
+                lots.add(new Lot(product, itemsCount));
+            }
+        }
+        catch (java.io.IOException e) {
+            System.out.println("There is something wrong with the input: " + e + '\n');
+            return null;
+        }
+
+        Purchase purchase = new Purchase(saleDateTime, customerId, lots);
+        purchases.add(purchase);
+        System.out.println("A new purchase has been successfully dealt and added to the list.\n");
+        return purchase;
+    }
+
     public void updateCustomer(){
 
     }
@@ -140,32 +184,25 @@ public class Shop implements ShopAssistant {
     }
 
     public Product createProduct(){
-            String manufacturer, name, article, colorName=null;
-            Color color=null;
+            String manufacturer, name, article, colorName;
             LocalDate manufactureDate;
             double currentPrice;
             System.out.println("Add a new product");
 
-            BufferedReader buffReader = new BufferedReader(new InputStreamReader(System.in));
             try {
                 System.out.print("Input the manufacturer: ");
-                manufacturer = buffReader.readLine();
+                manufacturer = ShopApp.bufferedReader.readLine();
                 System.out.print("Input the product name: ");
-                name = buffReader.readLine();
+                name = ShopApp.bufferedReader.readLine();
                 System.out.print("Input the product's article: ");
-                article = buffReader.readLine();
+                article = ShopApp.bufferedReader.readLine();
+
+                System.out.print("Input the color (text value): ");
+                colorName = ShopApp.bufferedReader.readLine();
 
                 try {
-                    System.out.print("Input the color (text value): ");
-                    colorName = buffReader.readLine();
-                    Field field = Color.class.getField(colorName);
-                    color = (Color)field.get(null);
-                } catch (Exception e) {
-                    System.out.println("The input color is not listed in the standard color table\n");
-                }
-                try {
                     System.out.print("Input the manufacture date ('YYYY-MM-DD'): ");
-                    manufactureDate = LocalDate.parse(buffReader.readLine());
+                    manufactureDate = LocalDate.parse(ShopApp.bufferedReader.readLine());
                 }
                 catch(Exception e) {
                     System.out.println("There is an exception caught during reading and parsing date of manufacturing." +
@@ -174,7 +211,7 @@ public class Shop implements ShopAssistant {
                 }
 
                 System.out.print("Input the current price: ");
-                currentPrice = Double.parseDouble(buffReader.readLine());
+                currentPrice = Double.parseDouble(ShopApp.bufferedReader.readLine());
             }
             catch (java.io.IOException e) {
                 System.out.println("You've entered something wrong: " + e + '\n');
@@ -182,7 +219,7 @@ public class Shop implements ShopAssistant {
             }
 
             Product product = new Product(manufacturer, name, article,
-                    color, colorName, manufactureDate, currentPrice);
+                    colorName, manufactureDate, currentPrice);
             products.add(product);
             System.out.println("A new product has been successfully added.\n");
             return product;
@@ -195,10 +232,6 @@ public class Shop implements ShopAssistant {
     public Product getProduct(int id){
 
         return products.get(id);
-    }
-
-    public void createPurchase(){
-
     }
 
     public void showCustomerInfo(int customerId){

@@ -1,6 +1,7 @@
 package com.sergeigots.study.devicesshop;
 
 import java.awt.Color;
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 
 public class Product implements ShopDataEntity{
@@ -14,15 +15,26 @@ public class Product implements ShopDataEntity{
     protected LocalDate manufactureDate;
     double currentPrice;
 
+    public static int getProductsCount(){
+        return nextProductId;
+    }
+
     public Product(String manufacturer, String name, String article,
-                   Color color, String colorName,
+                   String colorName,
                    LocalDate manufactureDate, double currentPrice){
         this.id = nextProductId++;
         this.manufacturer = manufacturer;
         this.name = name;
         this.article = article;
-        this.color = color;
-        if(color!=null) {
+
+        try {
+            Field field = Color.class.getField(colorName);
+            this.color = (Color)field.get(null);
+        } catch (Exception e) {
+            System.out.println("Adding a new product: the color \"" + colorName
+                    + "\" is not listed in the standard color table\n");
+        }
+        if(this.color!=null) {
             this.colorName = colorName;
         }
         this.manufactureDate = manufactureDate;
@@ -66,6 +78,13 @@ public class Product implements ShopDataEntity{
         System.out.println("Manufacture date: " + manufactureDate.toString());
         System.out.println("Current price: " + currentPrice);
         System.out.println();
+    }
+
+    public void printInfoShort(){
+        System.out.print(name + ' ' + article + ", color:" + colorName
+                + " by " + manufacturer);
+        System.out.print(". manufactured " + manufactureDate.toString());
+        System.out.println("price: " + currentPrice);
     }
 }
 
