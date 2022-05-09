@@ -2,8 +2,10 @@ package com.sergeigots.study.devicesshop;
 
 public class Lot {
     protected int productId;
-    protected double sellPrice;
+    protected double salePrice;
     protected int itemsCount;
+
+    protected double sum;
 
     public static Lot of(Product product, int itemsCount){
         return new Lot(product, itemsCount);
@@ -15,8 +17,9 @@ public class Lot {
      */
     public Lot(Product product, int itemsCount) {
         this.productId = product.getId();
-        this.sellPrice = product.getCurrentPrice();
+        this.salePrice = product.getCurrentPrice();
         this.itemsCount = itemsCount;
+        this.sum = salePrice * itemsCount;
     }
 
     public int getProductId() {
@@ -27,7 +30,18 @@ public class Lot {
         return itemsCount;
     }
 
-    public double getSellPrice() {
-        return sellPrice;
+    public double getSalePrice() {
+        return salePrice;
+    }
+
+    public String toString(){
+        return "Product: " + ShopApp.getShop().getProduct(productId)
+                + "Sale price: " + salePrice
+                + ", items count: " + itemsCount
+                + ". Sum = " + sum + ". ";
+    }
+
+    public double getSum() {
+        return sum;
     }
 }

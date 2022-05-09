@@ -15,6 +15,10 @@ public class Customer implements ShopDataEntity {
     protected LocalDate dateOfBirth;
     protected boolean isBirhdaySpecified;
 
+    public static Customer getCustomer(int id){
+        return ShopApp.getShop().getCustomer(id);
+    }
+
     Customer(String surname, String name, String patronymic, LocalDate dateOfBirth){
         id = customerCount++;
         this.surname = surname;
@@ -36,6 +40,8 @@ public class Customer implements ShopDataEntity {
     public static int getCustomerCount() {
         return customerCount;
     }
+
+
 
     public int getId(){
         return id;
@@ -63,9 +69,11 @@ public class Customer implements ShopDataEntity {
 
     @Override
     public void printInfo() {
-        System.out.println("Customer info:");
-        System.out.println("Full name: " + surname + ' ' + name + ' ' + patronymic );
-        System.out.println("Date of birth: " + dateOfBirth.toString());
-        System.out.println();
+        System.out.println("Customer: " + this);
+    }
+
+    public String toString(){
+        return surname + ' ' + name + ' ' + patronymic
+                + ", Date of birth: " + dateOfBirth.toString() + ". ";
     }
 }

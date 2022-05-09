@@ -19,6 +19,10 @@ public class Product implements ShopDataEntity{
         return nextProductId;
     }
 
+    public static Product getProduct(int id){
+        return ShopApp.getShop().getProduct(id);
+    }
+
     public Product(String manufacturer, String name, String article,
                    String colorName,
                    LocalDate manufactureDate, double currentPrice){
@@ -71,20 +75,15 @@ public class Product implements ShopDataEntity{
     }
     @Override
     public void printInfo() {
-        System.out.println("Product info:");
-        System.out.println("Manufacturer: " + manufacturer);
-        System.out.println("Model name: " + name + ' ' + article);
-        System.out.println("Color: " + colorName);
-        System.out.println("Manufacture date: " + manufactureDate.toString());
-        System.out.println("Current price: " + currentPrice);
-        System.out.println();
+        System.out.println("Product: " + this);
     }
 
-    public void printInfoShort(){
-        System.out.print(name + ' ' + article + ", color:" + colorName
-                + " by " + manufacturer);
-        System.out.print(". manufactured " + manufactureDate.toString());
-        System.out.println("price: " + currentPrice);
+    public String toString() {
+        return  name  + ' ' + article
+                + " (color: " + colorName
+                + ") manufactured by " + manufacturer
+                + " " + manufactureDate.toString()
+                + ", current price: " + currentPrice + ". ";
     }
 }
 

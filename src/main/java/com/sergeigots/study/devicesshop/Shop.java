@@ -139,7 +139,7 @@ public class Shop implements ShopAssistant {
 
         try {
             boolean carryOn = true;
-            int productsCount = Product.getProductsCount();
+            int productIdMax = Product.getProductsCount()-1;
             System.out.print("Input a customer ID (from 0 to "
                     + (Customer.getCustomerCount()-1) + "): ");
             customerId = Integer.parseInt(ShopApp.bufferedReader.readLine());
@@ -148,16 +148,20 @@ public class Shop implements ShopAssistant {
                 int productId=-1, itemsCount;
                 Product product;
                 System.out.print("Input a product ID (from 0 to "
-                        + productsCount + ") or '-1' to close the list: ");
+                        + productIdMax + ") or '-1' to close the list: ");
                 productId = Integer.parseInt(ShopApp.bufferedReader.readLine());
                 if(productId==-1){
                     carryOn = false;
                     continue;
                 }
+                else if(productId>productIdMax) {
+                    System.out.println("Input product Id is not listed. Please try to input another id once again...");
+                    continue;
+                }
 
                 System.out.print("\tSelected product: ");
                 product = products.get(productId);
-                product.printInfoShort();
+                product.printInfo();
                 System.out.print("\tInput an items count: ");
                 itemsCount = Integer.parseInt(ShopApp.bufferedReader.readLine());
                 lots.add(new Lot(product, itemsCount));
@@ -181,6 +185,10 @@ public class Shop implements ShopAssistant {
     public Customer getCustomer(int id){
 
         return customers.get(id);
+    }
+
+    public Purchase getPurchase(int id){
+        return purchases.get(id);
     }
 
     public Product createProduct(){
