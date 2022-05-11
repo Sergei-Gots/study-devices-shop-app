@@ -39,8 +39,6 @@ public class Shop implements ShopAssistant {
                 1568));
         customers.add(new Customer("Heda", "Willem", "Claesz.",
                 LocalDate.of(1593, Month.DECEMBER, 14)));
-        customers.add(new Customer("Heda", "Willem", "Claesz.",
-                LocalDate.of(1593, Month.DECEMBER, 14)));
 
 
         products.add(new Product("Apple", "IPhone", "Pro 13",
@@ -76,12 +74,12 @@ public class Shop implements ShopAssistant {
         purchase1.add(Lot.of(getProduct(0), 1));
 
         ArrayList <Lot> purchase2 = new ArrayList<>();
-        purchase1.add(Lot.of(getProduct(4), 2));
-        purchase1.add(Lot.of(getProduct(5), 3));
-        purchase1.add(Lot.of(getProduct(6), 1));
+        purchase2.add(Lot.of(getProduct(4), 2));
+        purchase2.add(Lot.of(getProduct(5), 3));
+        purchase2.add(Lot.of(getProduct(6), 1));
 
         ArrayList <Lot> purchase3 = new ArrayList<>();
-        purchase1.add(Lot.of(getProduct(3), 2));
+        purchase3.add(Lot.of(getProduct(3), 2));
 
         purchases.add(
                 new Purchase(LocalDateTime.of(2022, Month.MAY, 7, 17, 5),
@@ -178,9 +176,6 @@ public class Shop implements ShopAssistant {
         return purchase;
     }
 
-    public void updateCustomer(){
-
-    }
 
     public Customer getCustomer(int id){
 
@@ -233,36 +228,37 @@ public class Shop implements ShopAssistant {
             return product;
         }
 
-    public void updateProduct(){
-
-    }
-
     public Product getProduct(int id){
 
         return products.get(id);
     }
 
-    public void showCustomerInfo(int customerId){
 
+
+    public void printCustomers(){
+        System.out.println("Customers list:");
+        System.out.println("---------------");
+        for (int i=0; i<Customer.getCustomerCount(); i++){
+            System.out.println(Customer.getCustomer(i));
+        }
+        System.out.println();
     }
 
-    public void showProductInfo(int productId){
-
+    public void printProducts(){
+        System.out.println("Products list:");
+        System.out.println("--------------");
+        for (int i=0; i<Product.getProductsCount(); i++){
+            System.out.println(Product.getProduct(i));
+        }
+        System.out.println();
     }
 
-    public void showPurchaseId(int purchaseId){
-
-    }
-
-    public void showCustomersList(){
-
-    }
-
-    public void showProductsList(){
-
-    }
-
-    public void showPurchasesList(){
-
+    public void printPurchases(){
+        System.out.println("Purchases list:");
+        System.out.println("---------------");
+        for (int i=0; i<Purchase.getPurchasesCount(); i++){
+                System.out.println(Purchase.getPurchase(i));
+        }
+        System.out.println();
     }
 }
