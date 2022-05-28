@@ -1,14 +1,8 @@
 package com.sergeigots.study.devicesshop;
 
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.time.Month;
-import java.util.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * Hello world!
@@ -36,7 +30,7 @@ public class ShopApp  {
         char ch = 'H';
         boolean carryOn=true;
 
-        while(carryOn == true){
+        while(carryOn){
             switch(ch){
                 case 'H':
                     System.out.println("Type 'Key' on a keyboard and then press 'Enter'. 'Key' can be:");
