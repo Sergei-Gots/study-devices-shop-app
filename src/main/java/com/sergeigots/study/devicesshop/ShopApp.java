@@ -34,11 +34,23 @@ public class ShopApp  {
             switch(ch){
                 case 'H':
                     System.out.println("Type 'Key' on a keyboard and then press 'Enter'. 'Key' can be:");
+                    System.out.println("U - to print the cUstomers list;");
+                    System.out.println("R - to print the pRoducts list;");
+                    System.out.println("A - to print the purchAses list;");
                     System.out.println("C - to add a new Customer;");
                     System.out.println("P - to add a new Product;");
                     System.out.println("S - to add a new purchaSe;");
                     System.out.println("X - to eXit the application;");
                     System.out.println("H - outputs this information again\n");
+                    break;
+                case 'U':
+                    shopAssistant.printCustomers();
+                    break;
+                case 'R':
+                    shopAssistant.printProducts();
+                    break;
+                case 'A':
+                    shopAssistant.printPurchases();
                     break;
                 case 'C':
                     entity = shopAssistant.createCustomer();

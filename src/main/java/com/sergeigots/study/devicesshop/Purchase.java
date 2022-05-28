@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Purchase implements ShopDataEntity {
 
-    protected static int purchaseCount;
+    protected static int purchasesCount;
     protected int id;
     protected LocalDateTime dateTime;
     protected int customerId;
@@ -18,9 +18,12 @@ public class Purchase implements ShopDataEntity {
         return ShopApp.getShop().getPurchase(id);
     }
 
+    public static int getPurchasesCount(){
+        return purchasesCount;
+    }
     public Purchase(LocalDateTime dateTime, int customerId,
                     ArrayList<Lot> lots){
-        id = purchaseCount++;
+        id = purchasesCount++;
         this.customerId = customerId;
         this.dateTime = dateTime;
         this.lots = lots;
@@ -35,7 +38,7 @@ public class Purchase implements ShopDataEntity {
         System.out.println();
     }
 
-    public String toString() {
+        public String toString() {
         StringBuilder s = new StringBuilder("Customer: " + Customer.getCustomer(customerId) + ", " +
                "sale date " + dateTime + "\nSold products: ");
         for (Lot lot:lots) {
